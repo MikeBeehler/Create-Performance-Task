@@ -18,7 +18,12 @@ while True:
     
     if know_rules.upper() == "Y" or know_rules.upper() == "YES":
         #TYPE OUT RULES!
-        print ("Try looking at Wikipedia for the general rules!")
+        print ("This is a variation on the popular casino game known as Blackjack. The goal is to get as close to 21 as possible, without going over.")
+        print ("You will face off against the 'Dealer', who in this case is a computer.")
+        print ("You will make an initial bet, and then will draw (get) a random card, which has a value. ")
+        print ("After seeing this card, you can choose to double the amount of money you have bet, or to not put in additional money.")
+        print ("You can repeat this cycle until you don't want to recieve any more cards, until one of you gets 21, or until one of you goes over 21.")
+        print ("In the end, the person closest to 21 (but not over) wins. Winning takes your end bet and will multiply it by 3. I hope you enjoy!")
         break
     
     elif know_rules.upper() == "N" or know_rules.upper() == "NO":
@@ -46,10 +51,6 @@ def play_round (user_total, dealer_total):
     global round_counter
     round_counter += 1
     print (f"Welcome to round {round_counter}.")
-    if repeat_game == "Y":
-        user_total = 0
-        dealer_total = 0
-        repeat_game = "N"
 
     #Gets a valid bet from the user
     if bet == 0:
@@ -102,9 +103,6 @@ def play_round (user_total, dealer_total):
     
     else:
         print ("The dealer cannot draw anymore")
-
-    user_card_total = user_total
-    dealer_card_total = dealer_total
         
     if play_again == "Y":
         print (f"You drew: {user_draw}")
@@ -117,6 +115,9 @@ def play_round (user_total, dealer_total):
                 break
             except:
                 print ("An error occurred! Please try again! (Make sure you are entering an integer)")
+    
+    user_card_total = user_total
+    dealer_card_total = dealer_total
     
     print (f"Your total is: {user_total}")
     

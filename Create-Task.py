@@ -61,7 +61,7 @@ def play_round (money, user_total, dealer_total):
     else:
         while True:
             try:
-                double_down = str(input(f"Please enter 'Y' if you would like to double down, and 'N' if you would just like to hit (Your current bet is {bet}): "))
+                double_down = str(input(f"Please enter 'Y' if you would like to double your bet, and 'N' if you would just like to hit (Your current bet is {bet}): "))
                 if double_down.upper() == "Y":
                     if balance - bet < 0:
                         print ("Your balance is too low to double down. You will just hit")
@@ -148,7 +148,7 @@ play_again = str(input("Would you like to play another round? Please type 'Y' if
 
 while play_again == "Y" and user_card_total < 21 and user_win != True and dealer_win != True:
     play_round (balance, user_card_total, dealer_card_total)
-    if user_card_total < 21:
+    if user_card_total < 21 and user_win != True and dealer_win != True:
         play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
 
 
@@ -214,10 +214,22 @@ def repeat():
             
             
 repeat ()
+
 while repeat_game == "Y":
-    play_round (balance, 0, 0)
+    
+    play_round (balance, user_card_total, dealer_card_total)
+
+    play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
+
+    while play_again == "Y" and user_card_total < 21 and user_win != True and dealer_win != True:
+        play_round (balance, user_card_total, dealer_card_total)
+        if user_card_total < 21 and user_win != True and dealer_win != True:
+            play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
+    
     dealer_only ()
+    
     check_win ()
+    
     repeat()
     
 print (f"Thanks for playing! You've left with a balance of {balance}")

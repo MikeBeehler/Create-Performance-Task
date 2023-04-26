@@ -25,6 +25,7 @@ while True:
     except:
         print ("An error occurred! Please try again! (Make sure you are entering an integer)")
     
+print (f"Got it! You will start with a balance of {balance}. Now, Let's begin!")
 
 #Now we have a balance, we can begin the game.
 
@@ -57,7 +58,7 @@ def play_round (bet_for_round, user_total, dealer_total):
     if bet_for_round == 0:
         while True:
             try:
-                bet_for_round = int(input(("Please enter your bet: ")))
+                bet_for_round = int(input(("Please enter your bet. By doing so, you will draw a random card: ")))
                 while bet_for_round > balance:
                     bet_for_round = int(input("Bet cannot be greater than current balance. Please enter a valid bet: "))
                 break

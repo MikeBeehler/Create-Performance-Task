@@ -1,7 +1,7 @@
 #BlackJack 
 import random
 play_again = "Y"
-bet_for_game = 0 
+total_bet = 0 
 user_card_total = 0 
 dealer_card_total = 0
 round_counter = 0 
@@ -22,7 +22,7 @@ print (f"You will start with a balance of {balance}. Now, Let's begin!")
 #Now we have a balance, we can begin the game.
 
 def wager (bet_for_round):
-    global bet_for_game
+    global total_bet
     global balance
     global round_counter
     round_counter += 1
@@ -39,7 +39,7 @@ def wager (bet_for_round):
                         break
                     else:
                         balance = balance - bet_for_round
-                        bet_for_game = bet_for_round + bet_for_round
+                        total_bet = bet_for_round + bet_for_round
                         break
                 else:
                     break
@@ -56,7 +56,7 @@ def wager (bet_for_round):
             except:
                 print ("An error occurred! Please try again! (Make sure you are entering an integer)")
         balance = balance - bet_for_round
-        bet_for_game = bet_for_round
+        total_bet = bet_for_round
 
 def play_round (user_total, dealer_total):
     global repeat_game
@@ -133,7 +133,7 @@ play_round (0, 0)
 play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
 
 while play_again == "Y" and user_card_total < 21 and user_win != True and dealer_win != True:
-    wager(bet_for_game)
+    wager(total_bet)
     play_round (user_card_total, dealer_card_total)
     if user_card_total < 21 and user_win != True and dealer_win != True:
         play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
@@ -160,10 +160,10 @@ if dealer_card_total <=16 and user_card_total < 21:
     
 def check_win():
     #Check Win Conditions
-    global user_card_total, dealer_card_total, dealer_win, user_win, bet_for_game, winnings, balance, round_counter, play_again
+    global user_card_total, dealer_card_total, dealer_win, user_win, total_bet, winnings, balance, round_counter, play_again
     if user_card_total > dealer_card_total and dealer_win != True or user_win == True:
         print ("You win!")
-        winnings = bet_for_game * 3
+        winnings = total_bet * 3
         balance = balance + winnings
         print (f"Your winnings were: {winnings}")
     
@@ -174,7 +174,7 @@ def check_win():
     
     #Resetting the Variables for the Next Game
     round_counter = 0
-    bet_for_game = 0
+    total_bet = 0
     play_again = "Y"
     winnings = 0 
     user_win = False
@@ -209,7 +209,7 @@ while repeat_game == "Y":
     play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
 
     while play_again == "Y" and user_card_total < 21 and user_win != True and dealer_win != True:
-        wager(bet_for_game)
+        wager(total_bet)
         play_round (user_card_total, dealer_card_total)
         if user_card_total < 21 and user_win != True and dealer_win != True:
             play_again = str(input("Would you like to play another round? Please type 'Y' if you would like to continue, and 'N' if you would like to stand: "))
